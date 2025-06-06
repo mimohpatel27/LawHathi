@@ -1,0 +1,549 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap'); /* Added Inter font as per previous code */
+
+:root {
+    --primary-blue: #20ace0;
+    --dark-blue: #0056b3;
+    --text-color: #df1010;
+    --light-grey: #eef0f2;
+    --border-grey: #484e55;
+    /* Added colors for consistency with previous output */
+    --lawhathi-dark-blue: #090909a0;
+    --lawhathi-light-text: #ecf0f1;
+    --lawhathi-medium-grey: #bdc3c7;
+    --lawhathi-border-dark: #34495e;
+    --lawhathi-light-blue-bg: #e0e7ff;
+    --lawhathi-hover-blue-bg: #8eaabb;
+    --lawhathi-item-bg: #f9fbfd;
+    --lawhathi-item-border: #eaf2fb;
+    --lawhathi-item-hover-bg: #e2f0ff;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    /* Prioritize Inter if it's the main font, otherwise Roboto */
+    font-family: 'Inter', 'Roboto', sans-serif;
+}
+
+body {
+    background-color: var(--light-grey);
+    color: var(--text-color);
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* Ensure body takes full viewport height */
+}
+
+.main-header {
+    background-color: #fff;
+    border-bottom: 1px solid var(--border-grey);
+    padding: 10px 20px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    z-index: 100; /* Ensure header stays on top */
+}
+
+.header-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center ;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding-bottom: 10px;
+    flex-wrap: wrap; /* Allow wrapping on smaller screens */
+    gap: 10px; /* Space between items in header-top */
+}
+
+.logo img {
+    height: 200px; /* Adjusted to a more standard logo size */
+    width: auto;
+    border-radius: 4px; /* Added for consistency */
+}
+
+.search-bar {
+    display: flex;
+    flex-grow: 1;
+    margin: 0 20px;
+    max-width: 500px;
+    order: 2; /* Default order for larger screens */
+}
+
+.search-bar input {
+    flex-grow: 1;
+    padding: 10px 15px;
+    border: 1px solid var(--border-grey);
+    border-radius: 20px 0 0 20px;
+    outline: none;
+    font-size: 16px;
+}
+
+.search-bar button {
+    background-color: var(--primary-blue);
+    color: #f0eded;
+    border: 1px solid var(--primary-blue);
+    border-radius: 0 20px 20px 0;
+    padding: 10px 15px;
+    cursor: pointer;
+    transition: background-color 0.5s ease;
+}
+
+.search-bar button:hover {
+    background-color: var(--dark-red);
+}
+
+.header-buttons {
+    display: flex;
+    gap: 10px; /* Space between buttons */
+    order: 3; /* Default order for larger screens */
+}
+
+.header-buttons button {
+    background-color: var(--lawhathi-light-red-bg); /* Using defined variable */
+    border: 1px solid var(--primary-blue);
+    color: var(--primary-blue);
+    padding: 10px 15px;
+    border-radius: 9999px; /* Fully rounded buttons */
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    display: flex; /* For icon and text alignment */
+    align-items: center;
+    gap: 5px; /* Space between icon and text */
+}
+
+.header-buttons button.submit-post-btn {
+    background-color: var(--primary-blue);
+    color: white;
+}
+
+.header-buttons button:hover {
+    background-color: var(--lawhathi-hover-blue-bg); /* Using defined variable */
+    color: var(--dark-blue);
+}
+
+.header-buttons button.submit-post-btn:hover {
+    background-color: var(--dark-blue);
+}
+
+
+.main-nav {
+    background-color: #fff;
+    border-top: 1px solid var(--border-grey);
+    padding: 10px 0;
+    z-index: 90; /* Ensure nav is below header but above other content */
+}
+
+.main-nav ul {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    flex-wrap: wrap; /* Allow nav items to wrap */
+}
+
+.main-nav ul li {
+    position: relative;
+    margin: 0 15px;
+}
+
+.main-nav ul li a {
+    text-decoration: none;
+    color: var(--text-color);
+    padding: 10px 0;
+    display: block;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+.main-nav ul li a:hover {
+    color: var(--primary-blue);
+}
+
+.main-nav ul li .dropdown {
+    display: none;
+    position: absolute;
+    background-color: #fff;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+    z-index: 1;
+    min-width: 160px;
+    border-radius: 5px;
+    padding: 5px 0;
+    top: calc(100% + 5px); /* Position slightly below the parent link */
+    left: 0;
+}
+
+.main-nav ul li:hover .dropdown {
+    display: block;
+}
+
+.main-nav ul li .dropdown li {
+    margin: 0;
+}
+
+.main-nav ul li .dropdown li a {
+    padding: 10px 20px;
+    white-space: nowrap;
+}
+
+.main-nav ul li .dropdown li a:hover {
+    background-color: var(--light-grey);
+}
+
+/* New: Wrapper for main content area to allow sidebar positioning */
+.content-wrapper {
+    display: flex;
+    flex-grow: 1; /* Allow content wrapper to take available vertical space */
+    position: relative;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px; /* Adjusted padding */
+    gap: 20px; /* Gap between quick links and hero */
+    align-items: flex-start; /* Align children to the top */
+}
+
+.hero-section {
+    background-image: url('https://placehold.co/800x500/cccccc/333333?text=Hero+Section'); /* Placeholder hero image */
+    background-size: cover;
+    background-position: center;
+    height: 500px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    flex-grow: 1;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.hero-section .hero-content {
+    background-color: rgba(0, 0, 0, 0.4); /* Semi-transparent overlay for text readability */
+    padding: 20px 40px;
+    border-radius: 8px;
+}
+
+.hero-section h2 {
+    font-size: 2.5em;
+    margin-bottom: 10px;
+}
+
+.hero-section p {
+    font-size: 1.2em;
+}
+
+
+/* --- Start of New Quick Links Section CSS - MODIFIED --- */
+.quick-links-section {
+    background-color: #fff;
+    padding: 20px 15px;
+    text-align: left;
+    width: 280px; /* Slightly increased width for sidebar */
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    border-radius: 8px;
+    flex-shrink: 0;
+    height: fit-content;
+    align-self: flex-start;
+    /* Sticky positioning for desktop */
+    position: absolute;
+    top: 20px; /* Distance from the top when sticky (adjust based on header height) */
+    right : 700px;
+}
+
+.quick-links-container {
+    max-width: none;
+    margin: 0;
+}
+
+.quick-links-section h2 {
+    font-size: 1.8em;
+    color: red;
+    margin-bottom: 20px;
+    position: relative;
+    padding-bottom: 8px;
+    text-align: left;
+}
+
+.quick-links-section h2::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 50px;
+    height: 3px;
+    background-color: var(--primary-blue);
+}
+
+.links-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.link-item {
+    background-color: var(--lawhathi-item-bg); /* Using defined variable */
+    border-radius: 6px;
+    box-shadow: none;
+    border: 1px solid var(--lawhathi-item-border); /* Using defined variable */
+    padding: 15px;
+    text-decoration: none;
+    color: purple;
+    text-align: left;
+    align-items: flex-start;
+    display: flex;
+    gap: 10px;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+.link-item:hover {
+    transform: none;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    border-color: var(--primary-blue);
+    background-color: var(--lawhathi-item-hover-bg); /* Using defined variable */
+}
+
+.link-item i {
+    font-size: 1.8em;
+    color: purple;
+    margin-bottom: 0;
+    flex-shrink: 0;
+    padding-top: 2px;
+}
+
+.link-item h3 {
+    font-size: 1.1em;
+    margin-bottom: 5px;
+    color: purple;
+}
+
+.link-item p {
+    font-size: 0.85em;
+    line-height: 1.4;
+    color: #555;
+}
+/* --- End of Quick Links Section CSS - MODIFIED --- */
+
+/* Footer Styling */
+.main-footer {
+    background-color: var(--lawhathi-dark-blue); /* Dark background */
+    color: var(--lawhathi-light-text); /* Light text color */
+    padding: 2.5rem 2rem;
+    margin-top: 2rem; /* Space from content above */
+    border-top: 1px solid var(--lawhathi-border-dark);
+}
+
+.footer-content {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 0 auto; /* Center the footer content */
+}
+
+.footer-section {
+    flex: 1; /* Allow sections to grow */
+    min-width: 200px; /* Minimum width for each section */
+}
+
+.footer-section h3 {
+    font-size: 1.2em;
+    color: var(--primary-blue); /* Blue heading */
+    margin-bottom: 1rem;
+    border-bottom: 2px solid var(--primary-blue); /* Underline effect */
+    padding-bottom: 0.5rem;
+    display: inline-block; /* Make border-bottom fit content */
+}
+
+.footer-section ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.footer-section ul li {
+    margin-bottom: 0.7rem;
+}
+
+.footer-section ul li a {
+    color: var(--lawhathi-light-text);
+    text-decoration: none;
+    transition: color 0.2s ease-in-out;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.footer-section ul li a:hover {
+    color: var(--primary-blue); /* Blue on hover */
+}
+
+.footer-bottom {
+    text-align: center;
+    margin-top: 2.5rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--lawhathi-border-dark);
+    font-size: 0.9em;
+    color: var(--lawhathi-medium-grey); /* Lighter grey for copyright */
+}
+
+/* Responsive design */
+@media (max-width: 1024px) {
+    .main-header, .main-nav ul, .content-wrapper, .main-footer {
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
+
+    .header-top {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .search-bar {
+        order: 3; /* Move search bar below logo and buttons on smaller screens */
+        margin-top: 10px;
+        max-width: 100%;
+        margin-left: 0; /* Remove horizontal margin */
+        margin-right: 0; /* Remove horizontal margin */
+    }
+    .header-buttons {
+        order: 2; /* Place buttons after logo */
+        margin-top: 10px;
+        width: 100%; /* Ensure buttons take full width */
+        justify-content: flex-start;
+    }
+    .logo {
+        order: 1; /* Place logo first */
+    }
+
+    .main-nav ul {
+        justify-content: flex-start;
+        gap: 1rem;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .main-nav a {
+        white-space: nowrap;
+    }
+
+    .content-wrapper {
+        flex-direction: column; /* Stack hero and quick links vertically */
+        padding: 10px; /* Adjust padding for smaller screens */
+        align-items: center; /* Center content wrapper children when stacked */
+        margin: 0 auto; /* Center content wrapper itself */
+    }
+    .quick-links-section {
+        position: static; /* Remove sticky positioning for mobile */
+        width: 100%; /* Allow quick links to take full width */
+        margin: 0 0 20px 0; /* Adjust margins */
+        text-align: left; /* Ensure content is left-aligned */
+        align-self: center; /* Center the quick links section when stacked */
+        max-width: 400px; /* Limit max width even when full width */
+    }
+    .quick-links-section h2 {
+        text-align: left; /* Ensure heading is left-aligned */
+    }
+    .quick-links-section h2::after {
+        left: 0; /* Align underline to the left */
+        transform: none; /* Remove transform */
+    }
+    .links-grid {
+        display: flex; /* Keep flex for vertical stacking */
+        flex-direction: column; /* Stack items vertically */
+        gap: 15px; /* Space between vertical items */
+    }
+    .link-item {
+        align-items: flex-start; /* Keep content aligned to the left within item */
+        text-align: left;
+        flex-direction: row; /* Keep icon and text side-by-side */
+        gap: 10px; /* Space between icon and text */
+        width: 100%; /* Ensure link item takes full width */
+    }
+    .link-item i {
+        margin-bottom: 0; /* Remove bottom margin */
+        padding-top: 2px; /* Maintain alignment */
+    }
+    .hero-section {
+        margin-left: 0; /* Remove left margin */
+        height: 300px; /* Reduce hero height */
+        margin-top: 0; /* Remove top margin, handled by quick-links margin-bottom */
+        width: 100%; /* Ensure hero takes full width */
+    }
+
+    /* Footer responsive adjustments */
+    .footer-content {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .footer-section {
+        width: 100%;
+        text-align: center;
+    }
+
+    .footer-section h3 {
+        text-align: center;
+        display: block; /* Make border-bottom span full width for centered text */
+    }
+}
+
+@media (max-width: 768px) {
+    .logo img {
+        height: 40px;
+    }
+
+    .search-bar input, .header-buttons button {
+        padding: 0.6rem 1rem;
+        font-size: 0.9rem;
+    }
+
+    .quick-links-section, .hero-section {
+        padding: 1rem;
+    }
+
+    .quick-links-section h2 {
+        font-size: 1.4em;
+    }
+
+    .link-item {
+        padding: 0.8rem;
+    }
+
+    .link-item i {
+        font-size: 1.5em;
+        margin-right: 0.75rem;
+    }
+
+    .link-item div h3 {
+        font-size: 1em;
+    }
+
+    .link-item div p {
+        font-size: 0.8em;
+    }
+
+    .main-footer {
+        padding: 1.5rem 1rem;
+    }
+
+    .footer-section h3 {
+        font-size: 1.1em;
+    }
+
+    .footer-section ul li a {
+        font-size: 0.9em;
+    }
+}
+
+@media (max-width: 576px) {
+    .header-buttons {
+        flex-direction: column;
+        width: 100%;
+    }
+    .header-buttons button {
+        margin: 5px 0;
+        width: 100%;
+    }
+}
